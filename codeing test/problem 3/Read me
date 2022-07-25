@@ -1,0 +1,3 @@
+this file requires an instaltion of python and was compiled in python 3.8.1
+It also inculed numpy matplotlib and scipy
+the file produces a graph of data.
