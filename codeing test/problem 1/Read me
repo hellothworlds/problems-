@@ -1,0 +1,13 @@
+//Read me
+these are the files to set up the first problem
+it requires an istalation of GFotran, Make, Gcc an gnuplot
+
+The make file contains the commands 
+Color
+calling "Make color" will compile the Fotran code into a Shared library
+Writeexe
+Calling "Make writeexe" will compile the top level C code with the shared Library
+The Pictures are two examples of graphs of the data in question plotted in Gnuplot
+
+calling Gnuplot
+then Plot "Iondata3_4_2021.txt" will result in a working graph of the data
