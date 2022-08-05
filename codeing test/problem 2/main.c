@@ -9,8 +9,8 @@ int main()
     double GID2RadarBearing(double glonint, double glatint, double glonfin, double glatfin);
     double RtoGlon(double range, double bearing, double glonint, double glatint);
     double RtoGlat(double range, double bearing, double glonint, double glatint);//declaration of variables and functions
-    double D = GID2RadarRange(180, 0, 0, 0);
-    double An = GID2RadarBearing(180, 0, 0, 0);
+    double D = GID2RadarRange(0, 90, 0, 0);
+    double An = GID2RadarBearing(0, 90, 0, 0);
     printf("Value of range in m= %f\n", D);
     printf("Value of Bearing in Degrees= %f\n", An);
     double lat = RtoGlat(D, An, 0, 0);
@@ -53,8 +53,12 @@ double RtoGlon(double range, double bearing, double glonint, double glatint) { /
     double R = 6371000; //radius of the earth in meters, change this to earths radius in different unit for other distances
     double loni = glonint * pi / 180;  //converting to radians 
     double lati = glatint * pi / 180;
-    double berrad = bearing * pi / 180; //converting to radians  
+    double berrad = bearing * pi / 180; //converting to radians 
     double ang = range / R;
+    if (range/R>1)
+    {
+        ang = ang - (int)range / R;
+    }
     double latf = sin(sin(lati) * cos(ang) + cos(lati) * sin(ang) * cos(berrad));
     double glonfin = loni + atan2(sin(berrad) * sin(ang) * cos(lati), cos(ang) - sin(lati) * sin(latf)) * 180 / pi;
     return(glonfin);
@@ -67,6 +71,10 @@ double RtoGlat(double range, double bearing, double glonint, double glatint) { /
     double lati = glatint * pi / 180;
     double berrad = bearing * pi / 180; //converting to radians  
     double ang = range / R; // dividing by radius of the earth in meters, change this to earths radius in different unit for other distances
+    if (range / R > 1)
+    {
+        ang = ang - (int)range / R;
+    }
     double latf = sin(sin(lati) * cos(ang) + cos(lati) * sin(ang) * cos(berrad));
     double glatfin = latf * 180 / pi;
     return(glatfin);
